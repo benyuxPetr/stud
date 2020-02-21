@@ -1,0 +1,16 @@
+{
+    "name": "benyux/student.list",
+    "authors": [
+        {
+            "name": "benyuxPetr",
+            "email": "benyuxp@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Src\\": "Src",
+            "Src\\Core\\": "Src/Core"
+        }
+    }
+}
