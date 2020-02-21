@@ -2,6 +2,9 @@
 
 namespace Src\Core;
 
+use Src\Core\Helper\Common;
+use Src\Core\Service\Router\DispatchedRoute;
+
 class App
 {
     private $di;
@@ -16,9 +19,27 @@ class App
 
     public function run()
     {
-        require_once CONFIG_DIR.'routes.php';
+        try {
 
-        var_dump($this->router->routes);
-        die();
+            require_once CONFIG_DIR.'routes.php';
+
+            $routerDispatch = $this->router->dispatch(Common::getMethod(), Common::getPathUrl());
+
+            if ($routerDispatch == null)
+            {
+                $routerDispatch = new DispatchedRoute('ErrorController:page404');
+            }
+
+            list($class, $action) = explode(":", $routerDispatch->getController(), 2);
+
+            $controller = '\\Src\\Core\\Controller\\'.$class;
+
+//            call_user_func([new $controller($this->di), $action]);
+
+        }catch (\ErrorException $e)
+        {
+            echo $e->getMessage();
+            exit;
+        }
     }
 }
