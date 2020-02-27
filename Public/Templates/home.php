@@ -30,14 +30,20 @@ $this->theme->header();
         </table>
         <nav aria-label="...">
             <ul class="pagination pagination-md justify-content-center">
-                <li class="page-item active" aria-current="page">
-                    <span class="page-link">
-                        1
-                        <span class="sr-only">(current)</span>
-                    </span>
-                </li>
-                <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <?php for($i=1;$i <= $data['pagination']['allPages'];$i++): ?>
+                    <?php if($data['pagination']['currentPage'] == $i): ?>
+                    <li class="page-item active">
+                        <span class="page-link">
+                            <?= $i?>
+                            <span class="sr-only">(current)</span>
+                        </span>
+                    </li>
+                    <?php else: ?>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=<?= $i?>"><?= $i?></a>
+                    </li>
+                    <?php endif; ?>
+                <?php endfor; ?>
             </ul>
         </nav>
     </div>

@@ -14,22 +14,31 @@ class HomeController extends Controller
 
     public function index(){
 
-
+        $perPage = 50;
         $studentsCount = $this->getStudentCount();
+        $allPages = ceil($studentsCount/$perPage);
+
+        $pagination = [
+            'allPages' => $allPages
+        ];
 
         if($this->request->get['page']){
-            $perPage = 50;
-            $curentPage = (int) $this->request->get['page'];
-            $offset = $perPage * ($curentPage-1);
+            $currentPage = (int) $this->request->get['page'];
+            if($currentPage > $allPages){
+                $currentPage = $allPages;
+            }
+            $offset = $perPage * ($currentPage-1);
             $students = $this->getStudents('student_id',$perPage, $offset);
+            $pagination['currentPage'] = $currentPage;
         }else{
             $students = $this->getStudents();
+            $pagination['currentPage'] = 1;
         }
-
         $data = [
             'pageName' => 'Students',
             'studentTable' => $students,
-            'studentTableCount' => $studentsCount
+            'studentTableCount' => $studentsCount,
+            'pagination' => $pagination
         ];
         $this->view->render('home', $data);
     }
