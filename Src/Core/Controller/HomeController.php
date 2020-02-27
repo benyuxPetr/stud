@@ -2,10 +2,18 @@
 
 namespace Src\Core\Controller;
 
+use Src\Core\Controller;
+use Src\Core\DI;
 
-class HomeController
+class HomeController extends Controller
 {
+    public function __construct(DI $di)
+    {
+        parent::__construct($di);
+    }
+
     public function index(){
-        echo "home";
+        $data = ['pageName' => 'Students'];
+        $this->view->render('home', $data);
     }
 }
