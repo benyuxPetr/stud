@@ -18,19 +18,15 @@ $this->theme->header();
                 <th scope="col">Местный/Иногородний</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Dylan</td>
-                <td>Heintze</td>
-                <td>M</td>
-                <td>2J4</td>
-                <td>dheintze0@dagondesig</td>
-                <td>248</td>
-                <td>2008-02-29</td>
-                <td>Иногородний</td>
-            </tr>
-            </tbody>
+            <?php if ($data['studentTableCount'] > 0): ?>
+                <tbody>
+                <?php foreach ($data['studentTable'] as $row): array_map('htmlentities', $row); ?>
+                    <tr>
+                        <td><?php echo implode('</td><td>', $row); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            <?php endif; ?>
         </table>
         <nav aria-label="...">
             <ul class="pagination pagination-md justify-content-center">
@@ -40,7 +36,7 @@ $this->theme->header();
                         <span class="sr-only">(current)</span>
                     </span>
                 </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
             </ul>
         </nav>
