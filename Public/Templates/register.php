@@ -4,8 +4,8 @@ $this->theme->header();
 ?>
     <h1 class="h1 d-flex justify-content-center">Регистрация</h1>
     <div class="row justify-content-md-center">
-        <div class="col-md-5">
-        <form>
+        <div class="col-md-6">
+        <form action="/registration/add" method="post">
             <div class="form-group row">
                 <label for="inputName" class="col-sm-3 col-form-label">Имя</label>
                 <div class="col-sm-9">
@@ -21,7 +21,7 @@ $this->theme->header();
             <div class="form-group row">
                 <label for="sex" class="col-sm-3 col-form-label">Пол</label>
                 <div class="col-sm-9">
-                    <select class="form-control" id="sex">
+                    <select class="form-control" id="sex" name="sex">
                         <option value="M">Mужской</option>
                         <option value="F">Женский</option>
                     </select>
@@ -34,6 +34,12 @@ $this->theme->header();
                 </div>
             </div>
             <div class="form-group row">
+                <label for="group" class="col-sm-3 col-form-label">Номер Группы</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="group" id="group" placeholder="Номер Группы">
+                </div>
+            </div>
+            <div class="form-group row">
                 <label for="inputExam" class="col-sm-3 col-form-label">Баллы ЕГЭ</label>
                 <div class="col-sm-9">
                     <input type="number" class="form-control" name="exam" id="inputExam" placeholder="Баллы ЕГЭ">
@@ -42,7 +48,7 @@ $this->theme->header();
             <div class="form-group row">
                 <label for="inputDate" class="col-sm-3 col-form-label">Дата Рождения</label>
                 <div class="col-sm-9">
-                    <input class="form-control" type="date" id="inputDate" placeholder="Дата Рождения">
+                    <input class="form-control" type="date" id="inputDate" name="inputDate" placeholder="Дата Рождения">
                 </div>
             </div>
             <div class="form-group row">
